@@ -1,17 +1,17 @@
 #include "binary_trees.h"
 /**
- * binary_tree_preorder - traverses the list using preorder traversal
+ * binary_tree_inorder - searching a tree using in-order traversal
  *
- * @tree: binary tree to search through
- * @func: function pointer
+ * @tree: tree to be searched
+ * @func: pointer to function to apply value to tree
  **/
-void binary_tree_preorder(const binary_tree_t *tree, void (*func)(int))
+void binary_tree_inorder(const binary_tree_t *tree, void (*func)(int))
 {
 	if (tree == NULL)
 		return;
 	if (func == NULL)
 		return;
+	binary_tree_inorder(tree->left, func);
 	func(tree->n);
-	binary_tree_preorder(tree->left, func);
-	binary_tree_preorder(tree->right, func);
+	binary_tree_inorder(tree->right, func);
 }
