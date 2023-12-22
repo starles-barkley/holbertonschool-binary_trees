@@ -1,29 +1,24 @@
+#include <stdlib.h>
 #include "binary_trees.h"
-/**
- *
- *
- *
- **/
-size_t binary_tree_size_recursive(const binary_tree_t *current)
-{
-	size_t leftSize = 0;
-	size_t rightSize = 0;
-	
-	if (current == NULL)
-		return (0);
-	leftSize = binary_tree_size_recursive(current->left);
-	rightSize = binary_tree_size_recursive(current->right);
-	return (1 + leftSize + rightSize);
-}
 
 /**
+ * binary_tree_size - determines the size of a binary tree
+ * @tree: the tree being measured
  *
- *
- *
- **/
+ * Return: the size of the tree. Defaults to 0 if tree is NULL
+*/
+
 size_t binary_tree_size(const binary_tree_t *tree)
 {
+	size_t size_l = 0, size_r = 0;
+
 	if (tree == NULL)
 		return (0);
-	return (binary_tree_size(tree));
+
+	if (tree->left != NULL)
+		size_l = binary_tree_size(tree->left);
+	if (tree->right != NULL)
+		size_r = binary_tree_size(tree->right);
+
+	return (size_l + size_r + 1);
 }
